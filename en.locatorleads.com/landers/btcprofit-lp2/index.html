@@ -80,7 +80,7 @@
 								<div class="formwrap-outer">
 									<p class="form-title"><span>Start</span> Your Financial<br />Journey <span>Today</span></p>
 									<div class="form-body">
-										<form id="regForm" class="registerForm" action="#">
+										<div id="regForm" class="registerForm">
 											<div class="form-group">
 												<div class="field-funnelregistrationform-first_name required">
 													<input
@@ -147,7 +147,7 @@
 											</div>
 
 											<div class="form-group btn-bottom">
-												<button type="submit" class="btn btn-primary registerBtn submit-button">
+												<button id="registration-btn" class="btn btn-primary registerBtn submit-button">
 													Get started now!
 												</button>
 											</div>
@@ -162,7 +162,7 @@
 													display: none;
 												"
 											></div>
-										</form>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -736,11 +736,7 @@
 			</footer>
 		</div>
 
-		<script
-			src="../../../code.jquery.com/jquery-3.5.1.min.js"
-			integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
-			crossorigin="anonymous"
-		></script>
+		<script src="js/jquery-3.5.1.min.js"></script>
 		<script
 			src="../../../cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay%402.1.7/dist/loadingoverlay.min.js"
 			type="text/javascript"
@@ -759,203 +755,242 @@
 		<script src="js/mCustomScrollbar.js"></script>
 		<script src="js/slick.js"></script>
 		<script>
-			jQuery(function ($) {
-				jQuery('#regForm').yiiActiveForm(
-					[
-						{
-							id: 'funnelregistrationform-first_name',
-							name: 'first_name',
-							container: '.field-funnelregistrationform-first_name',
-							input: '#funnelregistrationform-first_name',
-							error: '.regform_error_message_text.error_box',
-							validateOnType: true,
-							validate: function (attribute, value, messages, deferred, $form) {
-								value = yii.validation.trim($form, attribute, [], value)
-								yii.validation.required(value, messages, {
-									message: 'First name cannot be empty.',
-								})
-								yii.validation.string(value, messages, {
-									message: 'First name must be a string.',
-									min: 1,
-									tooShort: 'First name must contain at least 1 character.',
-									max: 128,
-									tooLong: 'First name may contain a maximum of 128 characters.',
-									skipOnEmpty: 1,
-								})
-								yii.validation.regularExpression(value, messages, {
-									pattern: /^[^0-9\<\>\(\)\[\]\\,\;\:\@\"\_\$\&\+\=\?\#\|\<\>\.\^\*\%\!\/\s]{2}[^0-9\<\>\(\)\[\]\\,\;\:\@\"\_\$\&\+\=\?\#\|\<\>\.\^\*\%\!\/]{0,30}$/,
-									not: false,
-									message: 'The first name must contain at least 2 characters, no numbers and no special characters.',
-									skipOnEmpty: 1,
-								})
-							},
-						},
-						{
-							id: 'funnelregistrationform-last_name',
-							name: 'last_name',
-							container: '.field-funnelregistrationform-last_name',
-							input: '#funnelregistrationform-last_name',
-							error: '.regform_error_message_text.error_box',
-							validateOnType: true,
-							validate: function (attribute, value, messages, deferred, $form) {
-								value = yii.validation.trim($form, attribute, [], value)
-								yii.validation.required(value, messages, {
-									message: 'Last name cannot be empty.',
-								})
-								yii.validation.string(value, messages, {
-									message: 'Surname must be a string.',
-									min: 1,
-									tooShort: 'Surname must contain at least 1 character.',
-									max: 128,
-									tooLong: 'Surname may contain a maximum of 128 characters.',
-									skipOnEmpty: 1,
-								})
-								yii.validation.regularExpression(value, messages, {
-									pattern: /^[^0-9\<\>\(\)\[\]\\,\;\:\@\"\_\$\&\+\=\?\#\|\<\>\.\^\*\%\!\/\s]{2}[^0-9\<\>\(\)\[\]\\,\;\:\@\"\_\$\&\+\=\?\#\|\<\>\.\^\*\%\!\/]{0,30}$/,
-									not: false,
-									message: 'The surname must contain at least 2 characters, no numbers and no special characters.',
-									skipOnEmpty: 1,
-								})
-							},
-						},
-						{
-							id: 'funnelregistrationform-email',
-							name: 'email',
-							container: '.field-funnelregistrationform-email',
-							input: '#funnelregistrationform-email',
-							error: '.regform_error_message_text.error_box',
-							validateOnType: true,
-							validate: function (attribute, value, messages, deferred, $form) {
-								yii.validation.required(value, messages, {
-									message: 'Email cannot be empty.',
-								})
-								yii.validation.email(value, messages, {
-									pattern: /^[a-zA-Z0-9!#$%&'*+\/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+\/=?^_`{|}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?$/,
-									fullPattern: /^[^@]*<[a-zA-Z0-9!#$%&'*+\/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+\/=?^_`{|}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?>$/,
-									allowName: false,
-									message: 'Enter a valid e-mail.',
-									enableIDN: false,
-									skipOnEmpty: 1,
-								})
-							},
-						},
+			// jQuery(function ($) {
+			// 	jQuery('#regForm').yiiActiveForm(
+			// 		[
+			// 			{
+			// 				id: 'funnelregistrationform-first_name',
+			// 				name: 'first_name',
+			// 				container: '.field-funnelregistrationform-first_name',
+			// 				input: '#funnelregistrationform-first_name',
+			// 				error: '.regform_error_message_text.error_box',
+			// 				validateOnType: true,
+			// 				validate: function (attribute, value, messages, deferred, $form) {
+			// 					value = yii.validation.trim($form, attribute, [], value)
+			// 					yii.validation.required(value, messages, {
+			// 						message: 'First name cannot be empty.',
+			// 					})
+			// 					yii.validation.string(value, messages, {
+			// 						message: 'First name must be a string.',
+			// 						min: 1,
+			// 						tooShort: 'First name must contain at least 1 character.',
+			// 						max: 128,
+			// 						tooLong: 'First name may contain a maximum of 128 characters.',
+			// 						skipOnEmpty: 1,
+			// 					})
+			// 					yii.validation.regularExpression(value, messages, {
+			// 						pattern: /^[^0-9\<\>\(\)\[\]\\,\;\:\@\"\_\$\&\+\=\?\#\|\<\>\.\^\*\%\!\/\s]{2}[^0-9\<\>\(\)\[\]\\,\;\:\@\"\_\$\&\+\=\?\#\|\<\>\.\^\*\%\!\/]{0,30}$/,
+			// 						not: false,
+			// 						message: 'The first name must contain at least 2 characters, no numbers and no special characters.',
+			// 						skipOnEmpty: 1,
+			// 					})
+			// 				},
+			// 			},
+			// 			{
+			// 				id: 'funnelregistrationform-last_name',
+			// 				name: 'last_name',
+			// 				container: '.field-funnelregistrationform-last_name',
+			// 				input: '#funnelregistrationform-last_name',
+			// 				error: '.regform_error_message_text.error_box',
+			// 				validateOnType: true,
+			// 				validate: function (attribute, value, messages, deferred, $form) {
+			// 					value = yii.validation.trim($form, attribute, [], value)
+			// 					yii.validation.required(value, messages, {
+			// 						message: 'Last name cannot be empty.',
+			// 					})
+			// 					yii.validation.string(value, messages, {
+			// 						message: 'Surname must be a string.',
+			// 						min: 1,
+			// 						tooShort: 'Surname must contain at least 1 character.',
+			// 						max: 128,
+			// 						tooLong: 'Surname may contain a maximum of 128 characters.',
+			// 						skipOnEmpty: 1,
+			// 					})
+			// 					yii.validation.regularExpression(value, messages, {
+			// 						pattern: /^[^0-9\<\>\(\)\[\]\\,\;\:\@\"\_\$\&\+\=\?\#\|\<\>\.\^\*\%\!\/\s]{2}[^0-9\<\>\(\)\[\]\\,\;\:\@\"\_\$\&\+\=\?\#\|\<\>\.\^\*\%\!\/]{0,30}$/,
+			// 						not: false,
+			// 						message: 'The surname must contain at least 2 characters, no numbers and no special characters.',
+			// 						skipOnEmpty: 1,
+			// 					})
+			// 				},
+			// 			},
+			// 			{
+			// 				id: 'funnelregistrationform-email',
+			// 				name: 'email',
+			// 				container: '.field-funnelregistrationform-email',
+			// 				input: '#funnelregistrationform-email',
+			// 				error: '.regform_error_message_text.error_box',
+			// 				validateOnType: true,
+			// 				validate: function (attribute, value, messages, deferred, $form) {
+			// 					yii.validation.required(value, messages, {
+			// 						message: 'Email cannot be empty.',
+			// 					})
+			// 					yii.validation.email(value, messages, {
+			// 						pattern: /^[a-zA-Z0-9!#$%&'*+\/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+\/=?^_`{|}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?$/,
+			// 						fullPattern: /^[^@]*<[a-zA-Z0-9!#$%&'*+\/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+\/=?^_`{|}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?>$/,
+			// 						allowName: false,
+			// 						message: 'Enter a valid e-mail.',
+			// 						enableIDN: false,
+			// 						skipOnEmpty: 1,
+			// 					})
+			// 				},
+			// 			},
 
-						{
-							id: 'funnelregistrationform-phone_number',
-							name: 'phone_number',
-							container: '.field-funnelregistrationform-phone_number',
-							input: '#funnelregistrationform-phone_number',
-							error: '.regform_error_message_text.error_box',
-							validateOnType: true,
-							validate: function (attribute, value, messages, deferred, $form) {
-								value = yii.validation.trim($form, attribute, [], value)
-								yii.validation.required(value, messages, {
-									message: 'Phone cannot be empty.',
-								})
-								yii.validation.string(value, messages, {
-									message: 'Phone must be a string.',
-									skipOnEmpty: 1,
-								})
-							},
-						},
-					],
-					[]
-				)
-			})
+			// 			{
+			// 				id: 'funnelregistrationform-phone_number',
+			// 				name: 'phone_number',
+			// 				container: '.field-funnelregistrationform-phone_number',
+			// 				input: '#funnelregistrationform-phone_number',
+			// 				error: '.regform_error_message_text.error_box',
+			// 				validateOnType: true,
+			// 				validate: function (attribute, value, messages, deferred, $form) {
+			// 					value = yii.validation.trim($form, attribute, [], value)
+			// 					yii.validation.required(value, messages, {
+			// 						message: 'Phone cannot be empty.',
+			// 					})
+			// 					yii.validation.string(value, messages, {
+			// 						message: 'Phone must be a string.',
+			// 						skipOnEmpty: 1,
+			// 					})
+			// 				},
+			// 			},
+			// 		],
+			// 		[]
+			// 	)
+			// })
 		</script>
 
 		<script>
-			$(function () {
-				function handleSuccess(url = 'https://account.profxmarket.eu/en/user/buy-btc') {
-					const urlParams = new URLSearchParams(window.location.search)
-					const cid = urlParams.get('cid')
-					let pixel_url = '../../../channer-mottects.xyz/conversion.html'
-					if (cid) {
-						pixel_url += `?cid=${cid}`
-					}
-					Swal.fire({
-						title: 'Successful!',
-						text: url ? 'Please wait...' : '',
-						icon: 'success',
-						html: `<img src=${pixel_url} width="1" height="1"/>`,
-					})
+			console.log("dfasdfasdfasdf");
+			$("#registration-btn").click(function(){
+				var firstname = $("#funnelregistrationform-first_name").val()
+				var lastname = $("#funnelregistrationform-last_name").val();
+				var email = $("#funnelregistrationform-email").val();
+				var phoneNum = $("#funnelregistrationform-phone_number").val();
 
-					if (url) {
-						setTimeout(function () {
-							window.location.href = url
-						}, 2000)
-					}
-				}
-
-				/* Handle Form Submit */
-
-				const $FORM = $('#regForm')
-				$FORM.submit(function (e) {
-					//prevent Default functionality
-					e.preventDefault()
-
-					const formData = {}
-					let isOk = true
-
-					$('#regForm')
-						.serializeArray()
-						.forEach(function (item) {
-							formData[item.name] = item.value
-							if (item.value === '' || item.value === null) {
-								isOk = false
-							}
+				const options = {
+						method: 'POST', 
+						headers:{"x-trackbox-username": "LocatorLeads",
+								"x-trackbox-password": "LocatorLeads123",
+								"x-api-key": "2643889w34df345676ssdas323tgc738",
+								"Content-Type": 'application/json'},
+						body: JSON.stringify({
+							"ai":"2958157", 
+							"ci":"1",
+							"gi":"132",
+							"userip":"WW", 
+							"firstname":firstname, 
+							"lastname":lastname, 
+							"email":email, 
+							"password":"LocatorLeads123", 
+							"phone":phoneNum, 
+							"prefix":"WW"
 						})
-
-					console.log('Validation stage: ', { formData })
-
-					if (!isOk) {
-						return Swal.fire({
-							icon: 'error',
-							title: 'Sorry, unable to submit!',
-							text: 'Please fix form errors. \nFill all the required input fields with appropriate value.',
-						})
-					}
-
-					const origin = window.location.href
-					const postData = { formData, metaData: { origin } }
-					console.log({ postData })
-
-					let url = 'https://wwl-node-backend.herokuapp.com/api/v1/lead/pow'
-
-					const settings = {
-						url,
-						method: 'POST',
-						timeout: 0,
-						headers: { 'Content-Type': 'application/json' },
-						data: JSON.stringify(postData),
-					}
-
-					// Show full page LoadingOverlay
-					$.LoadingOverlay('show')
-
-					$.ajax(settings)
-						.done(function (response) {
-							console.log(response)
-							if (response.id) {
-								//   var win = window.open("https://channer-mottects.xyz/click", "_blank")
-								//   setTimeout(function(){ win.close(); }, 1000)
-								handleSuccess(response.url)
-							} else {
-								Swal.fire({ icon: 'error', title: 'Oops...', text: response.message || 'Something went wrong.' })
-							}
-						})
-						.fail(function (xhr, status, error) {
-							console.log('Error Occurred: ', xhr.responseJSON)
-							if (xhr.responseJSON && typeof xhr.responseJSON.message === 'string') {
-								Swal.fire({ icon: 'error', title: 'Oops...', text: xhr.responseJSON.message })
-							}
-						})
-						.always(function () {
-							// Hide full page LoadingOverlay
-							$.LoadingOverlay('hide')
-						})
+					};
+				fetch("https://platform.merx.app.trackbox.guru/api/signup/procform", options)
+				.then(response => {
+					console.log("res111", response);
+				})
+				.then(response => {
+					console.log("res2222", response)
+				})
+				.catch(err => {
+					console.log("err", err);
 				})
 			})
+			// $(function () {
+			// 	function handleSuccess(url = 'https://account.profxmarket.eu/en/user/buy-btc') {
+			// 		const urlParams = new URLSearchParams(window.location.search)
+			// 		const cid = urlParams.get('cid')
+			// 		let pixel_url = '../../../channer-mottects.xyz/conversion.html'
+			// 		if (cid) {
+			// 			pixel_url += `?cid=${cid}`
+			// 		}
+			// 		Swal.fire({
+			// 			title: 'Successful!',
+			// 			text: url ? 'Please wait...' : '',
+			// 			icon: 'success',
+			// 			html: `<img src=${pixel_url} width="1" height="1"/>`,
+			// 		})
+
+			// 		if (url) {
+			// 			setTimeout(function () {
+			// 				window.location.href = url
+			// 			}, 2000)
+			// 		}
+			// 	}
+
+			// 	/* Handle Form Submit */
+
+			// 	const $FORM = $('#regForm')
+			// 	$FORM.submit(function (e) {
+			// 		//prevent Default functionality
+			// 		e.preventDefault()
+
+			// 		const formData = {}
+			// 		let isOk = true
+
+			// 		$('#regForm')
+			// 			.serializeArray()
+			// 			.forEach(function (item) {
+			// 				formData[item.name] = item.value
+			// 				if (item.value === '' || item.value === null) {
+			// 					isOk = false
+			// 				}
+			// 			})
+
+			// 		console.log('Validation stage: ', { formData })
+
+			// 		if (!isOk) {
+			// 			return Swal.fire({
+			// 				icon: 'error',
+			// 				title: 'Sorry, unable to submit!',
+			// 				text: 'Please fix form errors. \nFill all the required input fields with appropriate value.',
+			// 			})
+			// 		}
+
+			// 		const origin = window.location.href
+			// 		const postData = { formData, metaData: { origin } }
+			// 		console.log({ postData })
+
+			// 		let url = 'https://wwl-node-backend.herokuapp.com/api/v1/lead/pow'
+
+			// 		const settings = {
+			// 			url,
+			// 			method: 'POST',
+			// 			timeout: 0,
+			// 			headers: { 'Content-Type': 'application/json' },
+			// 			data: JSON.stringify(postData),
+			// 		}
+
+			// 		// Show full page LoadingOverlay
+			// 		$.LoadingOverlay('show')
+
+			// 		alert("Ok");
+
+			// 		// $.ajax(settings)
+			// 		// 	.done(function (response) {
+			// 		// 		console.log(response)
+			// 		// 		if (response.id) {
+			// 		// 			//   var win = window.open("https://channer-mottects.xyz/click", "_blank")
+			// 		// 			//   setTimeout(function(){ win.close(); }, 1000)
+			// 		// 			handleSuccess(response.url)
+			// 		// 		} else {
+			// 		// 			Swal.fire({ icon: 'error', title: 'Oops...', text: response.message || 'Something went wrong.' })
+			// 		// 		}
+			// 		// 	})
+			// 		// 	.fail(function (xhr, status, error) {
+			// 		// 		console.log('Error Occurred: ', xhr.responseJSON)
+			// 		// 		if (xhr.responseJSON && typeof xhr.responseJSON.message === 'string') {
+			// 		// 			Swal.fire({ icon: 'error', title: 'Oops...', text: xhr.responseJSON.message })
+			// 		// 		}
+			// 		// 	})
+			// 		// 	.always(function () {
+			// 		// 		// Hide full page LoadingOverlay
+			// 		// 		$.LoadingOverlay('hide')
+			// 		// 	})
+			// 	})
+			// })
 		</script>
 
 		<link rel="stylesheet" href="../../cdnjs.cloudflare.com/ajax/libs/fancybox/3.0.47/jquery.fancybox.min.html" />
