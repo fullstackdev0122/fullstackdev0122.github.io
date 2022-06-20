@@ -1,0 +1,17 @@
+HTTrack3.49-2+htsswf+htsjava launched on Mon, 20 Jun 2022 05:19:58 at https://en.locatorleads.com/landers/btcprofit-lp2/ +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar
+(winhttrack -qwC2%Ps2u1%s%uN0%I0p3DaK0H0%kf2A25000%f#f -F "Mozilla/4.5 (compatible; HTTrack 3.0x; Windows 98)" -%F "<!-- Mirrored from %s%s by HTTrack Website Copier/3.x [XR&CO'2014], %s -->" -%l "en, *" https://en.locatorleads.com/landers/btcprofit-lp2/ -O1 "C:\Users\Tech\Documents\aaa" +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar )
+
+Information, Warnings and Errors reported for this mirror:
+note:	the hts-log.txt file, and hts-cache folder, may contain sensitive information,
+	such as username/password authentication for websites mirrored in this project
+	do not share these files/folders if you want these information to remain private
+
+05:23:31	Error: 	"Not Found" (404) at link https://en.locatorleads.com/landers/btcprofit-lp2/images/ie-logo-nav-desktop.png (from https://en.locatorleads.com/landers/btcprofit-lp2/)
+05:23:32	Error: 	"Bad Request" (400) at link https://channer-mottects.xyz/conversion.gif (from https://en.locatorleads.com/landers/btcprofit-lp2/)
+05:23:32	Error: 	"Not Found" (404) at link https://en.locatorleads.com/cdnjs.cloudflare.com/ajax/libs/fancybox/3.0.47/jquery.fancybox.min.css (from https://en.locatorleads.com/landers/btcprofit-lp2/)
+05:23:32	Error: 	"Not Found" (404) at link https://en.locatorleads.com/cdnjs.cloudflare.com/ajax/libs/fancybox/3.0.47/jquery.fancybox.min.js (from https://en.locatorleads.com/landers/btcprofit-lp2/)
+05:23:38	Error: 	"Not Found" (404) at link https://en.locatorleads.com/landers/btcprofit-lp2/css/style.min_1.css (from https://en.locatorleads.com/landers/btcprofit-lp2/privacy_policy.html)
+05:23:38	Error: 	"Not Found" (404) at link https://en.locatorleads.com/landers/btcprofit-lp2/img/favicon.png (from https://en.locatorleads.com/landers/btcprofit-lp2/privacy_policy.html)
+
+HTTrack Website Copier/3.49-2 mirror complete in 3 minutes 40 seconds : 575 links scanned, 568 files written (15730820 bytes overall) [11994524 bytes received at 54520 bytes/sec], 5645078 bytes transferred using HTTP compression in 432 files, ratio 29%, 30.2 requests per connection
+(6 errors, 0 warnings, 0 messages)
